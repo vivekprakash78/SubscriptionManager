@@ -1,9 +1,9 @@
 ﻿namespace SubscriptionManager.Data
 {
-    public class SubscriptionDBHelper : ISubscriptionDBHelper
+    public class SubscriptionDbRepository : ISubscriptionDbRepository
     {
         private readonly SubscriptionDbContext _context;
-        public SubscriptionDBHelper(SubscriptionDbContext context)
+        public SubscriptionDbRepository(SubscriptionDbContext context)
         {
             _context = context;
         }

@@ -5,9 +5,11 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubscriptionManager", "SubscriptionManager\SubscriptionManager.csproj", "{234252AD-A168-43D6-87D6-30BC1F4BBBB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubscriptionManager.Data", "SubscriptionManager.Data.Service\SubscriptionManager.Data.csproj", "{07894D95-DC3D-4464-B6C2-1FC6C7956F16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubscriptionManager.Data", "SubscriptionManager.Data.Service\SubscriptionManager.Data.csproj", "{07894D95-DC3D-4464-B6C2-1FC6C7956F16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubscriptionManager.Test", "SubscriptionManager.Test\SubscriptionManager.Test.csproj", "{7DE3A8C7-6D5D-4FC2-9993-7A7A35C7AE0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SubscriptionManager.Test", "SubscriptionManager.Test\SubscriptionManager.Test.csproj", "{7DE3A8C7-6D5D-4FC2-9993-7A7A35C7AE0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{CC1EE15D-4657-486D-A813-97C8D4E872AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{7DE3A8C7-6D5D-4FC2-9993-7A7A35C7AE0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DE3A8C7-6D5D-4FC2-9993-7A7A35C7AE0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DE3A8C7-6D5D-4FC2-9993-7A7A35C7AE0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC1EE15D-4657-486D-A813-97C8D4E872AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC1EE15D-4657-486D-A813-97C8D4E872AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC1EE15D-4657-486D-A813-97C8D4E872AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC1EE15D-4657-486D-A813-97C8D4E872AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

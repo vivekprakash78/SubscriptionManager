@@ -1,6 +1,7 @@
 
 namespace SubscriptionManager
 {
+    using Common;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -8,6 +9,7 @@ namespace SubscriptionManager
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Options;
     using SubscriptionManager.Data;
 
     public class Startup
@@ -25,9 +27,14 @@ namespace SubscriptionManager
 
             services.AddDbContext<SubscriptionDbContext>(opt => opt.UseInMemoryDatabase(databaseName: "SubscriptionManager"));
 
-            services.AddScoped<ISubscriptionDBHelper, SubscriptionDBHelper>();
+            services.AddScoped<ISubscriptionDbRepository, SubscriptionDbRepository>();
+
+            services.AddHttpContextAccessor();
+            services.Configure<AppSettings>(Configuration.GetSection(nameof(AppSettings)));
+            services.AddSingleton(resolver => resolver.GetRequiredService<IOptionsMonitor<AppSettings>>().CurrentValue);
 
             services.AddControllersWithViews();
+            services.AddSwaggerGen();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -50,9 +57,17 @@ namespace SubscriptionManager
                 app.UseHsts();
             }
 
+            AppSettingsHelper.Services = app.ApplicationServices;
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Subscription Manager API");
+            });
 
             app.UseRouting();
 

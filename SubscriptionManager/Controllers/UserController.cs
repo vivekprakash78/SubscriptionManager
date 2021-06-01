@@ -1,18 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿
 namespace SubscriptionManager.Controllers
 {
+    using Common;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Logging;
+
     [ApiController]
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
         private readonly ILogger<UsersController> _logger;
-
+        public AppSettings Config => AppSettingsHelper.Config;
         public UsersController(ILogger<UsersController> logger)
         {
             _logger = logger;
@@ -23,7 +21,7 @@ namespace SubscriptionManager.Controllers
         {
             return string.Empty;
         }
-        
+
         [HttpGet("{id}")]
         public string Get(int id)
         {
@@ -37,7 +35,7 @@ namespace SubscriptionManager.Controllers
         }
 
         [HttpGet("{id}/subscriptions/{SubsId}")]
-        public string GetSubscriptions(int id,int SubsId)
+        public string GetSubscriptions(int id, int SubsId)
         {
             return string.Empty;
         }
@@ -45,7 +43,7 @@ namespace SubscriptionManager.Controllers
         [HttpPost("{id}")]
         public void Post([FromBody] int id)
         {
-            
+
         }
     }
 }

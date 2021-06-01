@@ -1,6 +1,6 @@
 ﻿namespace SubscriptionManager.Data
 {
-    public interface ISubscriptionDBHelper
+    public interface ISubscriptionDbRepository
     {
 
     }
