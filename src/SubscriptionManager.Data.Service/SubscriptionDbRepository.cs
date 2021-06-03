@@ -1,9 +1,10 @@
-﻿using SubscriptionManager.Data.Model;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
+﻿
 namespace SubscriptionManager.Data
 {
+    using SubscriptionManager.Data.Model;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class SubscriptionDbRepository : ISubscriptionDbRepository
     {
         private readonly SubscriptionDbContext _context;
@@ -12,29 +13,61 @@ namespace SubscriptionManager.Data
             _context = context;
         }
 
-        public Task<User> AddUser(User entity)
+        public bool AddUser(User entity)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                _context.Users.Add(entity);
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
-        public Task<User> DeleteUser(int id)
+        public bool DeleteUser(int id)
         {
-            throw new System.NotImplementedException();
+            var entity = _context.Users.Find(id);
+            if (entity != null)
+            {
+                try
+                {
+                    _context.Users.Remove(entity);
+                    _context.SaveChanges();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            else return true;
         }
 
-        public Task<List<User>> GetAllUsers()
+        public IEnumerable<User> GetAllUsers()
         {
-            throw new System.NotImplementedException();
+            return _context.Users.AsEnumerable();
         }
 
-        public Task<User> GetUser(int id)
+        public User GetUser(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Users.Find(id);
         }
 
-        public Task<User> UpdateUser(User entity)
+        public bool UpdateUser(User entity)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                _context.Users.Update(entity);
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

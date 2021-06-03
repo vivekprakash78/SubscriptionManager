@@ -4,46 +4,55 @@ namespace SubscriptionManager.Controllers
     using Common;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using SubscriptionManager.Data;
+    using SubscriptionManager.Data.Enumeration;
+    using SubscriptionManager.Data.Model;
+    using System;
+    using System.Linq;
+    using System.Text.Json;
 
     [ApiController]
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
         private readonly ILogger<UsersController> _logger;
+        private readonly ISubscriptionDbRepository _db;
         public AppSettings Config => AppSettingsHelper.Config;
-        public UsersController(ILogger<UsersController> logger)
+        public UsersController(ILogger<UsersController> logger, ISubscriptionDbRepository dbContext)
         {
             _logger = logger;
+            _db = dbContext;
         }
 
         [HttpGet]
         public string Get()
         {
-            return string.Empty;
+            return JsonSerializer.Serialize(_db.GetAllUsers());
         }
 
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return string.Empty;
+            return JsonSerializer.Serialize(_db.GetUser(id));
         }
 
         [HttpGet("{id}/subscriptions")]
         public string GetSubscriptions(int id)
         {
-            return string.Empty;
+            return JsonSerializer.Serialize(_db.GetUser(id).Subscriptions);
         }
 
         [HttpGet("{id}/subscriptions/{SubsId}")]
         public string GetSubscriptions(int id, int SubsId)
         {
-            return string.Empty;
+            var subscriptions = _db.GetUser(id).Subscriptions.Where(s => s.ID == SubsId);
+            return JsonSerializer.Serialize(subscriptions);
         }
 
-        [HttpPost("{id}")]
-        public void Post([FromBody] int id)
+        [HttpPost]
+        public void Post(User user)
         {
-
+            _db.AddUser(user);
         }
     }
 }

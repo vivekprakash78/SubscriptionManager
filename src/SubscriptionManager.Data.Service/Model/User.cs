@@ -6,10 +6,10 @@ namespace SubscriptionManager.Data.Model
 
     public class User
     {
-        public int UserID;
+        public int ID;
         public string FullName;
         public string UserName;
         public DateTime UserSince;
-        public IEnumerable<Subscription> subscriptions;
+        public ICollection<Subscription> Subscriptions;
     }
 }

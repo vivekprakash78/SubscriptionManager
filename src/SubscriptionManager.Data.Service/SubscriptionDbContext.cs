@@ -13,6 +13,12 @@ namespace SubscriptionManager.Data
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().HasKey(u => u.ID);
+            modelBuilder.Entity<Subscription>().HasKey(s => s.ID);
+        }
+
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<User> Users { get; set; }
     }
