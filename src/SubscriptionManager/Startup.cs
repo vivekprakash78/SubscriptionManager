@@ -34,6 +34,7 @@ namespace SubscriptionManager
             services.AddSingleton(resolver => resolver.GetRequiredService<IOptionsMonitor<AppSettings>>().CurrentValue);
 
             services.AddControllersWithViews();
+            services.AddHealthChecks();
             services.AddSwaggerGen();
 
             // In production, the React files will be served from this directory
@@ -70,7 +71,10 @@ namespace SubscriptionManager
             });
 
             app.UseRouting();
-
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapHealthChecks("/health");
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
