@@ -1,15 +1,16 @@
 ﻿
 namespace SubscriptionManager.Data.Model
 {
-    using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class User
     {
-        public int ID;
-        public string FullName;
-        public string UserName;
-        public DateTime UserSince;
-        public ICollection<Subscription> Subscriptions;
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ID { get; set; }
+        public string FullName { get; set; }
+        public string UserName { get; set; }
+
+        public ICollection<Subscription> Subscriptions { get; set; }
     }
 }

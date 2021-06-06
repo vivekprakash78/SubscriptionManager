@@ -4,6 +4,7 @@ namespace SubscriptionManager.Controllers
     using Common;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Logging;
+    using Model;
     using SubscriptionManager.Data;
     using SubscriptionManager.Data.Enumeration;
     using SubscriptionManager.Data.Model;
@@ -50,9 +51,16 @@ namespace SubscriptionManager.Controllers
         }
 
         [HttpPost]
-        public void Post(User user)
+        public void Post([FromBody] UserRequest req)
         {
+            User user = new User
+            {
+                FullName = req.FullName,
+                UserName = req.UserName
+            };
+
             _db.AddUser(user);
+            return;
         }
     }
 }
